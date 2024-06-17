@@ -9,40 +9,77 @@
             </a>
         </div>
     </div>
-    <button class="add-button">
-        Добавить
-    </button>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Артикул</th>
-            <th>Название</th>
-            <th>Статус</th>
-            <th>Атрибуты</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($products as $product)
-            <tr class="tr-body">
-                <th>{{ $product->article }}</th>
-                <th>{{ $product->name }}</th>
-                <th>{{ $product->status === 'available' ? 'Доступен' : 'Не доступен' }}</th>
-                <th>
-                    @foreach(json_decode($product->data, true) as $key => $value)
-                        <span>
+    <div class="table-content">
+        <table>
+            <thead>
+            <tr>
+                <th>Артикул</th>
+                <th>Название</th>
+                <th>Статус</th>
+                <th>Атрибуты</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($products as $product)
+                <tr class="tr-body">
+                    <th>{{ $product->article }}</th>
+                    <th>{{ $product->name }}</th>
+                    <th>{{ $product->status === 'available' ? 'Доступен' : 'Не доступен' }}</th>
+                    <th>
+                        @foreach(json_decode($product->data, true) as $key => $value)
+                            <span>
                             {{ $key }}:
                         </span>
-                        <span>
+                            <span>
                             {{ $value }}
                         </span>
-                        <br>
-                    @endforeach
-                </th>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+                            <br>
+                        @endforeach
+                    </th>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        <form class="add-block">
+            <h1 style="color: white; font-size: 20px; font-weight: 900; margin-bottom: 20px">
+                Добавить продукт
+            </h1>
+            <div class="input-box">
+                <label>
+                    Артикул
+                </label>
+                <input>
+
+            </div>
+            <div class="input-box">
+                <label>
+                    Название
+                </label>
+                <input>
+
+            </div>
+            <div class="input-box">
+                <label>
+                    Статус
+                </label>
+                <select>
+                    <option>
+                        Доступен
+                    </option>
+                    <option>
+                        Недоступен
+                    </option>
+                </select>
+                <label style="font-weight: 900; margin-top: 10px">
+                    Атрибуты
+                </label>
+            </div>
+            <div id="attributesInputContainer"></div>
+            <button type="button" onclick="generateInputs()" class="add-attribute">
+                + Добавить атрибут
+            </button>
+        </form>
+    </div>
 </x-app-layout>
 <style>
     .topbar {
@@ -74,9 +111,10 @@
         }
     }
     table {
-        width: 70%;
         border-collapse: collapse;
         margin-top: 20px;
+        width: 50vw;
+        min-width: 50vw;
     }
     th, td {
         padding: 8px;
@@ -99,4 +137,116 @@
         padding: 5px 40px;
         border-radius: 10px;
     }
+    .table-content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;
+    }
+    .add-block {
+        background-color: #374050;
+        box-sizing: border-box;
+        padding: 20px;
+        width: 100%;
+        max-height: calc(100vh - 78px);
+        overflow: auto;
+        /*display: none;*/
+    }
+    .input-box {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: white;
+        margin-top: 10px;
+        input {
+            border-radius: 10px;
+            color: black;
+        }
+        select {
+            /*-webkit-appearance: none;*/
+            /*appearance: none;*/
+            color: black;
+            border-radius: 10px;
+        }
+        option {
+            /*-webkit-appearance: none;*/
+            /*appearance: none;*/
+            background-color: #fff;
+            color: #333;
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+    }
+    .add-attribute {
+        color: #5FC6F1;
+        text-decoration: underline dotted;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+    .attributes {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+    .delete-attribute {
+        width: 18px;
+        height: 18px;
+        background: url('/assets/icons/trash.svg') no-repeat center center;
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        top: 50%;
+        transform: translateY(100%);
+    }
 </style>
+
+<script>
+    function generateInputs() {
+        var container = document.getElementById('attributesInputContainer');
+
+        var rowDiv = document.createElement('div');
+        rowDiv.classList.add('attributes');
+
+        var inputBoxName = document.createElement('div');
+        inputBoxName.classList.add('input-box');
+
+        var labelName = document.createElement('label');
+        labelName.textContent = 'Название';
+
+        var inputName = document.createElement('input');
+        inputName.type = 'text';
+
+        inputBoxName.appendChild(labelName);
+        inputBoxName.appendChild(inputName);
+
+        var inputBoxValue = document.createElement('div');
+        inputBoxValue.classList.add('input-box');
+
+        var labelValue = document.createElement('label');
+        labelValue.textContent = 'Значение';
+
+        var inputValue = document.createElement('input');
+        inputValue.type = 'text';
+
+        inputBoxValue.appendChild(labelValue);
+        inputBoxValue.appendChild(inputValue);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-attribute');
+        deleteButton.type = 'button';
+        deleteButton.onclick = function() {
+            container.removeChild(rowDiv);
+        };
+
+        rowDiv.appendChild(inputBoxName);
+        rowDiv.appendChild(inputBoxValue);
+        rowDiv.appendChild(deleteButton);
+
+        container.appendChild(rowDiv);
+    }
+</script>
