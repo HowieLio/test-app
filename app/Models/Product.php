@@ -11,6 +11,13 @@ class Product extends Model
 
     protected $table = 'products';
 
+    protected $fillable = [
+        'article',
+        'name',
+        'status',
+        'data'
+    ];
+
     public function scopeAvailable($query)
     {
         return $query->where('status', 'available');

@@ -40,7 +40,8 @@
             @endforeach
             </tbody>
         </table>
-        <form class="add-block">
+        <form class="add-block" action="{{ route('products.create') }}" method="POST">
+            @csrf
             <h1 style="color: white; font-size: 20px; font-weight: 900; margin-bottom: 20px">
                 Добавить продукт
             </h1>
@@ -48,27 +49,21 @@
                 <label>
                     Артикул
                 </label>
-                <input>
-
+                <input id="article" name="article" type="text" required>
             </div>
             <div class="input-box">
                 <label>
                     Название
                 </label>
-                <input>
-
+                <input id="name" name="name" type="text" required>
             </div>
             <div class="input-box">
                 <label>
                     Статус
                 </label>
-                <select>
-                    <option>
-                        Доступен
-                    </option>
-                    <option>
-                        Недоступен
-                    </option>
+                <select id="status" name="status">
+                    <option value="available">Доступен</option>
+                    <option value="unavailable">Недоступен</option>
                 </select>
                 <label style="font-weight: 900; margin-top: 10px">
                     Атрибуты
@@ -78,6 +73,8 @@
             <button type="button" onclick="generateInputs()" class="add-attribute">
                 + Добавить атрибут
             </button>
+
+            <button type="submit">Сохранить</button>
         </form>
     </div>
 </x-app-layout>
@@ -206,6 +203,7 @@
 </style>
 
 <script>
+    let countRows = 0;
     function generateInputs() {
         var container = document.getElementById('attributesInputContainer');
 
@@ -220,6 +218,7 @@
 
         var inputName = document.createElement('input');
         inputName.type = 'text';
+        inputName.name = `attributes[${countRows}][name]`;
 
         inputBoxName.appendChild(labelName);
         inputBoxName.appendChild(inputName);
@@ -232,6 +231,7 @@
 
         var inputValue = document.createElement('input');
         inputValue.type = 'text';
+        inputValue.name = `attributes[${countRows}][value]`;
 
         inputBoxValue.appendChild(labelValue);
         inputBoxValue.appendChild(inputValue);
@@ -241,12 +241,29 @@
         deleteButton.type = 'button';
         deleteButton.onclick = function() {
             container.removeChild(rowDiv);
+            return countRows--;
         };
-
+        countRows++;
         rowDiv.appendChild(inputBoxName);
         rowDiv.appendChild(inputBoxValue);
         rowDiv.appendChild(deleteButton);
 
         container.appendChild(rowDiv);
     }
+    function sendData() {
+        var form = document.querySelector('.add-block');
+        let formData = new FormData(form);
+
+        axios.post(form.action, formData)
+            .then(function (response) {
+                console.log('Success:', response.data);
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.error('Error:', error.response.data);
+                alert(error.response.data.message)
+            });
+    }
 </script>
+
+
