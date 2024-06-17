@@ -64,7 +64,7 @@
         </p>
     </div>
     <div class="links">
-        <a style="color: white">
+        <a href="{{route("products.list")}}" style="color: white">
             Продукты
         </a>
     </div>
