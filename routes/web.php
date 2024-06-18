@@ -25,7 +25,6 @@ Route::get('/dashboard', function () {
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'view'])->middleware(['auth'])->name('products.list');
 Route::post('/products/create', [\App\Http\Controllers\ProductController::class, 'create'])->middleware(['auth'])->name('products.create');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

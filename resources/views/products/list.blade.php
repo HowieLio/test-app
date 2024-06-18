@@ -40,7 +40,10 @@
             @endforeach
             </tbody>
         </table>
-        <form class="add-block" action="{{ route('products.create') }}" method="POST">
+        <button id="add-button" onclick="handleAddButton()" class="add-button">
+            Добавить продукт
+        </button>
+        <form id='add-block' class="add-block" action="{{ route('products.create') }}" method="POST">
             @csrf
             <h1 style="color: white; font-size: 20px; font-weight: 900; margin-bottom: 20px">
                 Добавить продукт
@@ -126,10 +129,9 @@
         background-color: white;
     }
     .add-button {
+        margin-top: 20px;
+        margin-right: 20px;
         background-color: #0dc5fe;
-        position: absolute;
-        right: 20px;
-        top: 100px;
         color: white;
         padding: 5px 40px;
         border-radius: 10px;
@@ -148,7 +150,7 @@
         width: 100%;
         max-height: calc(100vh - 78px);
         overflow: auto;
-        /*display: none;*/
+        display: none;
     }
     .input-box {
         display: flex;
@@ -264,6 +266,17 @@
                 alert(error.response.data.message)
             });
     }
+    function handleAddButton() {
+        var addButton = document.getElementById('add-button');
+        var addBlock = document.getElementById('add-block');
+
+        // Скрыть кнопку
+        addButton.style.display = 'none';
+
+        // Показать блок добавления продукта
+        addBlock.style.display = 'block';
+    }
+
 </script>
 
 
