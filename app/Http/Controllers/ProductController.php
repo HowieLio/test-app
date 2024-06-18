@@ -24,8 +24,10 @@ class ProductController extends Controller
         $name = $request->input('name');
         $status = $request->input('status');
         $attributes = [];
-        foreach ($request->input('attributes') as $attribute) {
-            $attributes[$attribute['name']] = $attribute['value'];
+        if ($request->input('attributes') != null) {
+            foreach ($request->input('attributes') as $attribute) {
+                $attributes[$attribute['name']] = $attribute['value'];
+            }
         }
         $product = Product::create([
             'article' => $article,
