@@ -43,42 +43,47 @@
         <button id="add-button" onclick="handleAddButton()" class="add-button">
             Добавить продукт
         </button>
-        <form id='add-block' class="add-block" action="{{ route('products.create') }}" method="POST">
-            @csrf
-            <h1 style="color: white; font-size: 20px; font-weight: 900; margin-bottom: 20px">
-                Добавить продукт
-            </h1>
-            <div class="input-box">
-                <label>
-                    Артикул
-                </label>
-                <input id="article" name="article" type="text" required>
-            </div>
-            <div class="input-box">
-                <label>
-                    Название
-                </label>
-                <input id="name" name="name" type="text" required>
-            </div>
-            <div class="input-box">
-                <label>
-                    Статус
-                </label>
-                <select id="status" name="status">
-                    <option value="available">Доступен</option>
-                    <option value="unavailable">Недоступен</option>
-                </select>
-                <label style="font-weight: 900; margin-top: 10px">
-                    Атрибуты
-                </label>
-            </div>
-            <div id="attributesInputContainer"></div>
-            <button type="button" onclick="generateInputs()" class="add-attribute">
-                + Добавить атрибут
-            </button>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <form id="add-block" class="add-block" action="{{ route('products.create') }}" method="POST">
+                    @csrf
+                    <h1 style="color: black; font-size: 20px; font-weight: 900; margin-bottom: 20px">
+                        Добавить продукт
+                    </h1>
+                    <div class="input-box">
+                        <label>
+                            Артикул
+                        </label>
+                        <input id="article" name="article" type="text" required>
+                    </div>
+                    <div class="input-box">
+                        <label>
+                            Название
+                        </label>
+                        <input id="name" name="name" type="text" required>
+                    </div>
+                    <div class="input-box">
+                        <label>
+                            Статус
+                        </label>
+                        <select id="status" name="status">
+                            <option value="available">Доступен</option>
+                            <option value="unavailable">Недоступен</option>
+                        </select>
+                        <label style="font-weight: 900; margin-top: 10px">
+                            Атрибуты
+                        </label>
+                    </div>
+                    <div id="attributesInputContainer"></div>
+                    <button type="button" onclick="generateInputs()" class="add-attribute">
+                        + Добавить атрибут
+                    </button>
 
-            <button type="submit">Сохранить</button>
-        </form>
+                    <button type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
 </x-app-layout>
 <style>
@@ -185,6 +190,30 @@
         border: none;
         outline: none;
     }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+        box-sizing: border-box;
+    }
+    .modal-content {
+        background-color: #374050;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        max-height: calc(100vh - 78px);
+        overflow: auto;
+        box-sizing: border-box;
+        position: relative;
+    }
+
     .attributes {
         display: flex;
         align-items: center;
@@ -267,14 +296,16 @@
             });
     }
     function handleAddButton() {
-        var addButton = document.getElementById('add-button');
+        var modal = document.getElementById('myModal');
         var addBlock = document.getElementById('add-block');
-
-        // Скрыть кнопку
-        addButton.style.display = 'none';
-
-        // Показать блок добавления продукта
+        modal.style.display = 'flex';
         addBlock.style.display = 'block';
+    }
+    window.onclick = function(event) {
+        var modal = document.getElementById('myModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
     }
 
 </script>
