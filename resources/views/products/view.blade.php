@@ -117,7 +117,6 @@
         box-sizing: border-box;
         position: relative;
     }
-
     .close {
         color: #aaaaaa;
         float: right;

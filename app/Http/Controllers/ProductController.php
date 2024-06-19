@@ -37,4 +37,9 @@ class ProductController extends Controller
         ]);
         return back();
     }
+
+    public function edit(ProductEditRequest $request)
+    {
+
+    }
 }

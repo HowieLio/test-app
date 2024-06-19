@@ -57,7 +57,7 @@
         box-sizing: border-box;
         padding: 20px;
         width: 100%;
-        max-height: calc(100vh - 78px);
+        max-height: calc(90vh - 80px);
         overflow: auto;
         display: none;
     }
@@ -102,7 +102,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        overflow: auto;
+        overflow: hidden;
         background-color: rgba(0,0,0,0.4);
         box-sizing: border-box;
     }
@@ -112,7 +112,7 @@
         padding: 20px;
         border: 1px solid #888;
         width: 50%;
-        max-height: calc(100vh - 78px);
+        max-height: 90vh;
         overflow: auto;
         box-sizing: border-box;
         position: relative;
