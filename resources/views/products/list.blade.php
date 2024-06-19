@@ -180,9 +180,10 @@
                 const productStatus = row.getAttribute('data-product-status');
                 const productAttributes = JSON.parse(row.getAttribute('data-product-attributes'));
 
+                document.getElementById('editProductId').value = editProductId;
                 document.getElementById('infoArticle').textContent = productArticle;
                 document.getElementById('infoName').textContent = productName;
-                document.getElementById('infoStatus').textContent = productStatus;
+                document.getElementById('infoStatus').textContent = productStatus === 'available' ? 'Доступен' : 'Недоступен';
 
                 const editNameInput = document.getElementById('editName');
                 const editArticleInput = document.getElementById('editArticle');
@@ -223,55 +224,7 @@
     function closeEditModal() {
         document.getElementById('editModal').style.display = 'none';
     }
-    let countEditRows = 0;
-    function generateEditAttributes(name = null, value = null) {
-        var container = document.getElementById('editAttributesInputContainer');
 
-        var rowDiv = document.createElement('div');
-        rowDiv.classList.add('attributes');
-
-        var inputBoxName = document.createElement('div');
-        inputBoxName.classList.add('input-box');
-
-        var labelName = document.createElement('label');
-        labelName.textContent = 'Название';
-
-        var inputName = document.createElement('input');
-        inputName.type = 'text';
-        inputName.name = `attributes[${countRows}][name]`;
-        inputName.value = name;
-
-        inputBoxName.appendChild(labelName);
-        inputBoxName.appendChild(inputName);
-
-        var inputBoxValue = document.createElement('div');
-        inputBoxValue.classList.add('input-box');
-
-        var labelValue = document.createElement('label');
-        labelValue.textContent = 'Значение';
-
-        var inputValue = document.createElement('input');
-        inputValue.type = 'text';
-        inputValue.name = `attributes[${countEditRows}][value]`;
-        inputValue.value = value;
-
-        inputBoxValue.appendChild(labelValue);
-        inputBoxValue.appendChild(inputValue);
-
-        var deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete-attribute');
-        deleteButton.type = 'button';
-        deleteButton.onclick = function() {
-            container.removeChild(rowDiv);
-            return countRows--;
-        };
-        countRows++;
-        rowDiv.appendChild(inputBoxName);
-        rowDiv.appendChild(inputBoxValue);
-        rowDiv.appendChild(deleteButton);
-
-        container.appendChild(rowDiv);
-    }
 
     window.onclick = function(event) {
         var modals = ['myModal', 'infoModal', 'editModal'];

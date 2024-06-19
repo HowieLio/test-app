@@ -202,7 +202,7 @@
         container.appendChild(rowDiv);
     }
     function sendData() {
-        var form = document.querySelector('.add-block');
+        var form = document.querySelector('#add-block');
         let formData = new FormData(form);
 
         axios.post(form.action, formData)

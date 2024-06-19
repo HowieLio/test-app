@@ -200,20 +200,6 @@
 
         container.appendChild(rowDiv);
     }
-    function sendData() {
-        var form = document.querySelector('.add-block');
-        let formData = new FormData(form);
-
-        axios.post(form.action, formData)
-            .then(function (response) {
-                console.log('Success:', response.data);
-                window.location.reload();
-            })
-            .catch(function (error) {
-                console.error('Error:', error.response.data);
-                alert(error.response.data.message)
-            });
-    }
     function handleAddButton() {
         var modal = document.getElementById('myModal');
         var addBlock = document.getElementById('add-block');
