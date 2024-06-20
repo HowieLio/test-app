@@ -15,8 +15,8 @@ class ProductController extends Controller
         /* @var User $user */
         $user = auth()->user();
         /* @var Product $products */
-        $products = Product::all();
-        return view('products.list', ['user' => $user, 'products' => $products]);
+        $products = Product::orderBy('id')->get();
+        return view('products.index', ['user' => $user, 'products' => $products]);
     }
 
     public function create(ProductCreateRequest $request)
