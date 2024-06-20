@@ -1,0 +1,207 @@
+.topbar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    background-color: white;
+}
+
+.sections {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    .section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        a {
+            padding: 25px 0;
+            text-transform: uppercase;
+        }
+
+        a.active {
+            color: #ED1C24;
+            border-bottom: 4px solid #ED1C24;
+        }
+    }
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 50vw;
+    min-width: 50vw;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    font-weight: 400;
+    color: #6E6E6F;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+tr.tr-body {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.add-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    background-color: #0dc5fe;
+    color: white;
+    padding: 5px 40px;
+    border-radius: 7px;
+}
+
+.table-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-height: calc(100vh - 78px);
+    overflow: auto;
+}
+
+.edit-button {
+    width: 20px;
+    height: 20px;
+    background: url('/assets/icons/edit.svg') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 82px;
+    right: 433px;
+    transform: translateY(100%);
+}
+
+.delete-button {
+    width: 20px;
+    height: 20px;
+    background: url('/assets/icons/trash2.svg') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 82px;
+    right: 430px;
+    transform: translateY(100%);
+}
+.save-button {
+    margin-top: 20px;
+    margin-right: 20px;
+    background-color: #0dc5fe;
+    color: white;
+    padding: 10px 80px;
+    border-radius: 7px;
+    display: block;
+}
+.add-block {
+    background-color: #374050;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    max-height: calc(90vh - 80px);
+    overflow: auto;
+    display: none;
+}
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: white;
+    margin-top: 10px;
+    input {
+        border-radius: 10px;
+        color: black;
+    }
+    select {
+        /*-webkit-appearance: none;*/
+        /*appearance: none;*/
+        color: black;
+        border-radius: 10px;
+    }
+    option {
+        /*-webkit-appearance: none;*/
+        /*appearance: none;*/
+        background-color: #fff;
+        color: #333;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+.add-attribute {
+    color: #5FC6F1;
+    text-decoration: underline dotted;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+    box-sizing: border-box;
+}
+.modal-content {
+    background-color: #374050;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    max-height: 90vh;
+    overflow: auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 36px;
+    font-weight: 100;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+}
+
+.attributes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.delete-attribute {
+    width: 18px;
+    height: 18px;
+    background: url('/assets/icons/trash.svg') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 50%;
+    transform: translateY(100%);
+}
