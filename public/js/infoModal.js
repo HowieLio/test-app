@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editAttributesInputContainer').innerHTML = '';
             for (let key in productAttributes) {
                 if (productAttributes.hasOwnProperty(key)) {
-                    generateEditAttributes(key, productAttributes[key]);
+                    generateInputs('editAttributesInputContainer', key, productAttributes[key]);
                 }
             }
             const attributesContainer = document.getElementById('infoAttributes');

@@ -1,6 +1,6 @@
 <div id="editModal" class="modal">
     <div class="modal-content">
-        <form id="edit-block" class="add-block" action="{{ route('products.edit') }}" onsubmit="sendEditData()" method="POST" style="display: contents">
+        <form id="edit-block" class="add-block" action="{{ route('products.edit') }}" method="POST" style="display: contents">
             @csrf
             <input type="hidden" name="product_id" id="editProductId">
             <span class="close" onclick="closeEditModal()">
@@ -26,9 +26,9 @@
                 <label style="font-weight: 900; margin-top: 10px">Атрибуты</label>
             </div>
             <div id="editAttributesInputContainer"></div>
-            <button type="button" onclick="generateEditAttributes()" class="add-attribute">+ Добавить атрибут</button>
+            <button type="button" onclick="generateInputs('editAttributesInputContainer')" class="add-attribute">+ Добавить атрибут</button>
             <button type="submit" class="save-button">Сохранить</button>
         </form>
     </div>
 </div>
-<script src="{{ asset('js/editModal.js') }}"></script>
+<script src="{{ asset('js/generating.js') }}"></script>

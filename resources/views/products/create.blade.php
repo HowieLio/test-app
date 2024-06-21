@@ -33,7 +33,7 @@
                 </label>
             </div>
             <div id="attributesInputContainer"></div>
-            <button type="button" onclick="generateInputs()" class="add-attribute">
+            <button type="button" onclick="generateInputs('attributesInputContainer')" class="add-attribute">
                 + Добавить атрибут
             </button>
             <button type="submit" class="save-button">
@@ -43,5 +43,4 @@
     </div>
  </div>
 
- <script src="{{ asset('js/createModal.js') }}"></script>
-
+ <script src="{{ asset('js/generating.js') }}"></script>
