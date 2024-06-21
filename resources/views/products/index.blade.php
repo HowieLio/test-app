@@ -51,4 +51,5 @@
 </x-app-layout>
 
 <script src="{{ asset('js/modalFunctions.js') }}"></script>
+<script src="{{ asset('js/generating.js') }}"></script>
 

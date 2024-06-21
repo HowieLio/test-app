@@ -31,4 +31,3 @@
         </form>
     </div>
 </div>
-<script src="{{ asset('js/generating.js') }}"></script>

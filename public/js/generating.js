@@ -1,5 +1,4 @@
-let countRows = 0;
-
+let countRows = 0
 function generateInputs(containerId, name = '', value = '') {
     const container = document.getElementById(containerId);
 
