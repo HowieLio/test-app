@@ -23,8 +23,13 @@
     </div>
     <button id="edit-button" onclick="handleEditButton()" class="edit-button">
     </button>
-    <button id="delete-button" onclick="handleDeleteButton()" class="delete-button">
-    </button>
+{{--    <button id="delete-button" onclick="handleDeleteButton()" class="delete-button">--}}
+{{--    </button>--}}
+    <form method="POST" action="{{ route('products.delete', $product->id) }}">
+        @csrf
+        @method('DELETE')
+        <button id="delete-button" type="submit" class="delete-button"></button>
+    </form>
 </div>
 
 <script src="{{ asset('js/infoModal.js') }}"></script>

@@ -39,3 +39,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function handleDeleteButton() {
+    if (editProductId) {
+        fetch(`/products/delete/${editProductId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }).then(() => {
+            closeInfoModal(); // Закрываем модальное окно после удаления
+        }).catch(error => {
+            console.error('Ошибка запроса на удаление:', error);
+        });
+    }
+}
+
