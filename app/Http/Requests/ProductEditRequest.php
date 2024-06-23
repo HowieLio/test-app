@@ -4,15 +4,26 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\Product;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class ProductEditRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return true;
+        $productId = $this->product_id;
+
+        $currentArticle = Product::findOrFail($productId)->article;
+
+        if ($this->input('article') === $currentArticle) {
+            return true;
+        }
+        $userRole = Config::get('productsRoles.role');
+        $rolePermissions = Config::get('productsRoles.roles.' . $userRole);
+
+        return $rolePermissions['can_edit_article'];
     }
 
     /**
@@ -23,17 +34,21 @@ class ProductEditRequest extends FormRequest
     public function rules(): array
     {
         $productId = $this->product_id;
-        return [
-            'article' => [
-                'required',
-                'string',
-                'regex:/^[a-zA-Z0-9]+$/',
-                Rule::unique('products', 'article')->ignore($productId)
-            ],
+
+        $rules = [
             'name' => 'required|string|min:10',
             'status' => 'required|in:available,unavailable',
             'attributes.*.name' => 'required|string',
             'attributes.*.value' => 'required|string'
         ];
+        if ($this->authorize()) {
+            $rules['article'] = [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z0-9]+$/',
+                Rule::unique('products', 'article')->ignore($productId),
+            ];
+        }
+        return $rules;
     }
 }

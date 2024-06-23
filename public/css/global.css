@@ -79,9 +79,6 @@ tr.tr-body {
     background-size: contain;
     border: none;
     cursor: pointer;
-    position: relative;
-    top: 82px;
-    right: 433px;
     transform: translateY(100%);
 }
 
@@ -92,9 +89,6 @@ tr.tr-body {
     background-size: contain;
     border: none;
     cursor: pointer;
-    position: relative;
-    top: 82px;
-    right: 430px;
     transform: translateY(100%);
 }
 .save-button {
@@ -172,6 +166,18 @@ tr.tr-body {
     position: relative;
 }
 
+.modal-close {
+    color: #aaaaaa;
+    font-size: 36px;
+    font-weight: 100;
+    cursor: pointer;
+}
+.modal-close:hover,
+.modal-close:focus {
+    color: white;
+    text-decoration: none;
+}
+
 .close {
     color: #aaaaaa;
     float: right;
@@ -204,4 +210,27 @@ tr.tr-body {
     position: relative;
     top: 50%;
     transform: translateY(100%);
+}
+
+.modal-buttons {
+    position: relative;
+    top: -16px;
+    display: flex;
+    margin-left: auto;
+}
+
+.modal-buttons button {
+    margin-left: 2px;
+}
+
+
+.product-info {
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 0;
+}
+
+.modal-header {
+    display: flex;
 }

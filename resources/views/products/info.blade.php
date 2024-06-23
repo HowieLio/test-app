@@ -1,9 +1,20 @@
 <div id="infoModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeInfoModal()">&times;</span>
-        <h1 style="color: white; font-size: 20px; font-weight: 900; margin-bottom: 20px">
-            Информация о продукте:
-        </h1>
+        <div class="modal-header">
+            <h2 class="product-info">Информация о продукте:</h2>
+            <div class="modal-buttons">
+                <button id="edit-button" onclick="handleEditButton()" class="edit-button">
+                </button>
+                @if(isset($product))
+                    <form method="POST" action="{{ route('products.delete', $product->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button id="delete-button" type="submit" class="delete-button"></button>
+                    </form>
+                @endif
+                <div class="modal-close" onclick="closeInfoModal()">&times;</div>
+            </div>
+        </div>
         <div class="input-box">
             <label style="color:#FFFFFFB2">Артикул:</label>
             <div id="infoArticle"></div>
@@ -21,19 +32,6 @@
             <div id="infoAttributes"></div>
         </div>
     </div>
-    <button id="edit-button" onclick="handleEditButton()" class="edit-button">
-    </button>
-{{--    <button id="delete-button" onclick="handleDeleteButton()" class="delete-button">--}}
-{{--    </button>--}}
-    <form method="POST" action="{{ route('products.delete', $product->id) }}">
-        @csrf
-        @method('DELETE')
-        <button id="delete-button" type="submit" class="delete-button"></button>
-    </form>
 </div>
 
 <script src="{{ asset('js/infoModal.js') }}"></script>
-
-
-
-

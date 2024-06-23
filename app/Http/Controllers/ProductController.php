@@ -12,9 +12,7 @@ class ProductController extends Controller
 {
     public function view()
     {
-        /* @var User $user */
         $user = auth()->user();
-        /* @var Product $products */
         $products = Product::orderBy('id')->get();
         return view('products.index', ['user' => $user, 'products' => $products]);
     }
@@ -66,15 +64,9 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        try {
-            $product = Product::findOrFail($id);
-            $product->delete();
+        $product = Product::findOrFail($id);
+        $product->delete();
 
-            // Optional: Add a success message to the session
-            return back()->with('success', 'Product deleted successfully.');
-        } catch (\Exception $e) {
-            // Optional: Add an error message to the session
-            return back()->with('error', 'Failed to delete the product.');
-        }
+        return back();
     }
 }
