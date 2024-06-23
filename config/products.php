@@ -1,12 +1,11 @@
 <?php
 return [
-    'role' => 'user',
     'roles' => [
         'admin' => [
-            'can_edit_article' => true,
+            'can_edit_article'
         ],
         'user' => [
-            'can_edit_article' => false,
+
         ],
     ],
 ];

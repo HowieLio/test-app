@@ -1,6 +1,6 @@
 <div id="editModal" class="modal">
     <div class="modal-content">
-        <form id="edit-block" class="add-block" action="{{ route('products.edit') }}" method="POST" style="display: contents">
+        <form id="edit-block" class="add-block" action="{{ route('products.edit') }}" onsubmit="sendData(event, '#edit-block')" method="POST" style="display: contents">
             @csrf
             <input type="hidden" name="product_id" id="editProductId">
             <span class="close" onclick="closeEditModal()">
@@ -11,7 +11,15 @@
             </h1>
             <div class="input-box">
                 <label>Артикул</label>
-                <input id="editArticle" name="article" type="text" required>
+                <input
+                    id="editArticle"
+                    name="article"
+                    type="text"
+                    required
+                    @if(!$user->hasPermission('can_article_edit'))
+                        readonly
+                    @endif
+                >
             </div>
             <div class="input-box">
                 <label>Название</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\Models\Product;
@@ -20,10 +21,9 @@ class ProductEditRequest extends FormRequest
         if ($this->input('article') === $currentArticle) {
             return true;
         }
-        $userRole = Config::get('productsRoles.role');
-        $rolePermissions = Config::get('productsRoles.roles.' . $userRole);
-
-        return $rolePermissions['can_edit_article'];
+        /* @var User $user */
+        $user = auth()->user();
+        return $user->hasPermission('can_edit_article');
     }
 
     /**

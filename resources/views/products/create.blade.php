@@ -1,6 +1,6 @@
  <div id="myModal" class="modal">
     <div class="modal-content">
-        <form id="add-block" class="add-block" action="{{ route('products.create') }}" method="POST">
+        <form id="add-block" class="add-block" action="{{ route('products.create') }}" onsubmit="sendData(event, '#add-block')" method="POST">
             @csrf
             <span class="close" onclick="closeAddModal()">
                 &times;

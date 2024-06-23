@@ -7,6 +7,7 @@ use App\Http\Requests\ProductEditRequest;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,9 @@ class ProductController extends Controller
     {
         $user = auth()->user();
         $products = Product::orderBy('id')->get();
-        return view('products.index', ['user' => $user, 'products' => $products]);
+        $role = Config::get('products.role');
+        $permissions = Config::get('products.roles.' . $role);
+        return view('products.index', ['user' => $user, 'permissions' => $permissions, 'products' => $products]);
     }
 
     public function create(ProductCreateRequest $request)
@@ -64,8 +67,7 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
+        $product = Product::findOrFail($id)->delete();
 
         return back();
     }

@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const rows = document.querySelectorAll('.tr-body');
     rows.forEach(row => {
         row.addEventListener('click', () => {
+            const deleteForm = document.querySelector('#delete-block');
             editProductId = row.getAttribute('data-product-id');
+            deleteForm.action = '/products/delete/' + editProductId;
             const productArticle = row.getAttribute('data-product-article');
             const productName = row.getAttribute('data-product-name');
             const productStatus = row.getAttribute('data-product-status');

@@ -20,3 +20,18 @@ function generateInputs(containerId, name = '', value = '') {
     countRows++;
     container.appendChild(rowDiv);
 }
+function sendData(event, form_id) {
+    event.preventDefault();
+    const form = document.querySelector(form_id);
+    let formData = new FormData(form);
+
+    axios.post(form.action, formData)
+        .then(function (response) {
+            console.log('Success:', response.data);
+            window.location.reload();
+        })
+        .catch(function (error) {
+            console.error('Error:', error.response.data);
+            alert(error.response.data.message)
+        });
+}

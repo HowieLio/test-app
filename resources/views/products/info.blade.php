@@ -6,7 +6,7 @@
                 <button id="edit-button" onclick="handleEditButton()" class="edit-button">
                 </button>
                 @if(isset($product))
-                    <form method="POST" action="{{ route('products.delete', $product->id) }}">
+                    <form id="delete-block" method="POST">
                         @csrf
                         @method('DELETE')
                         <button id="delete-button" type="submit" class="delete-button"></button>
