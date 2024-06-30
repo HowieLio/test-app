@@ -53,3 +53,8 @@ RUN git clone https://github.com/seebi/dircolors-solarized
 
 EXPOSE 5173
 WORKDIR /var/www
+
+# Create storage directory and set permissions
+RUN mkdir -p /var/www/storage \
+    && chown -R www-data:www-data /var/www/storage \
+    && chmod -R 775 /var/www/storage

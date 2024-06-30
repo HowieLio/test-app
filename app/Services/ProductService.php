@@ -2,19 +2,23 @@
 
 namespace App\Services;
 
+use App\Jobs\SendProductCreatedNotification;
 use App\Models\Product;
+use App\Notifications\ProductCreatedNotification;
+use Illuminate\Support\Facades\Mail;
 
 class ProductService
 {
     public function createProduct(array $data): void
     {
         $attributes = $this->prepareAttributes($data['attributes'] ?? []);
-        Product::create([
+        $product = Product::create([
             'article' => $data['article'],
             'name' => $data['name'],
             'status' => $data['status'],
             'data' => json_encode($attributes),
         ]);
+        SendProductCreatedNotification::dispatch($product);
     }
     public function getAllProducts()
     {
