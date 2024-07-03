@@ -1,7 +1,7 @@
 <div id="infoModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h2 class="product-info">Информация о продукте:</h2>
+            <h2 class="product-info-label">Информация о продукте:</h2>
             <div class="modal-buttons">
                 <button id="edit-button" onclick="handleEditButton()" class="edit-button">
                 </button>
@@ -15,20 +15,20 @@
                 <div class="modal-close" onclick="closeInfoModal()">&times;</div>
             </div>
         </div>
-        <div class="input-box">
-            <label style="color:#FFFFFFB2">Артикул:</label>
+        <div class="product-info">
+            <label>Артикул:</label>
             <div id="infoArticle"></div>
         </div>
-        <div class="input-box">
-            <label style="color:#FFFFFFB2">Название:</label>
+        <div class="product-info">
+            <label>Название:</label>
             <div id="infoName"></div>
         </div>
-        <div class="input-box">
-            <label style="color:#FFFFFFB2">Статус:</label>
+        <div class="product-info">
+            <label>Статус:</label>
             <div id="infoStatus"></div>
         </div>
-        <div class="input-box">
-            <label style="color:#FFFFFFB2">Атрибуты:</label>
+        <div class="product-info">
+            <label>Атрибуты:</label>
             <div id="infoAttributes"></div>
         </div>
     </div>

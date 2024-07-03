@@ -52,6 +52,15 @@ tr.tr-body {
     padding: 10px;
     background-color: white;
     cursor: pointer;
+    word-break: break-word;
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 100px;
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 200px;
 }
 
 .add-button {
@@ -224,12 +233,31 @@ tr.tr-body {
     margin-left: 2px;
 }
 
-
-.product-info {
+.product-info-label {
     color: white;
     font-size: 20px;
     font-weight: 900;
     margin-bottom: 0;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-info label {
+    flex: 1 1 auto;
+    margin-right: 10px;
+    white-space: nowrap;
+    color:#FFFFFFB2
+}
+
+.product-info div {
+    flex: 4 4 auto;
+    word-break: break-all;
+    white-space: pre-wrap;
+    color: white;
 }
 
 .modal-header {
