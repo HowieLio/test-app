@@ -55,9 +55,9 @@ services:
             - .docker/db/data:/var/lib/postgresql/data
             - .docker/db/sql:/docker-entrypoint-initdb.d
         environment:
-         - POSTGRES_USER=refactorian
-         - POSTGRES_PASSWORD=refactorian
-         - POSTGRES_DB=refactorian
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=${DB_DATABASE}
 
     ####################################################################################################
     # phpMyAdmin
